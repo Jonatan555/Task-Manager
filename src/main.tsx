@@ -16,3 +16,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     </AuthProvider>
   </React.StrictMode>
 );
+
+<main>
+  <section></section>
+  <section></section>
+  <section></section>
+</main>;
