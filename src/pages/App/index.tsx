@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
-import { Sidebar } from "../../components/Sidebar";
-import { Container } from "./styles";
 import { Header } from "../../components/Header";
+import { SideBar } from "../../components/SideBar";
+import { Container } from "./styles";
 import { Footer } from "../../components/Footer";
 
 export function App() {
@@ -10,14 +10,13 @@ export function App() {
       <Header />
 
       <article>
-        <section className="sidebar">
-          <Sidebar />
+        <section className="sideBar">
+          <SideBar />
         </section>
-
-        <Outlet /> {/* main*/}
+        <Outlet /> {/* main */}
       </article>
 
-      <Footer/>
+      <Footer />
     </Container>
   );
 }

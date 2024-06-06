@@ -17,14 +17,14 @@ type AuthContextTypes = {
   signUp: (params: SignUpTypes) => Promise<boolean | void>;
   isLoading: boolean;
   signOut: () => void;
-  authuserID: string;
+  authUserID: string;
 };
 
 export const AuthContext = createContext({} as AuthContextTypes);
 
 export function AuthProvider({ children }: PropsWithChildren) {
   const [isLoading, setIsLoading] = useState(false);
-  const [authuserID, setAuthuserID] = useState("");
+  const [authUserID, setAuthUserID] = useState("");
 
   async function signIn({ email, password }: SignInTypes) {
     if (!email || !password) throw alert("Por favor informar email e senha!");
@@ -35,7 +35,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
       .then((res) => {
         const userID = res.data.id;
 
-        setAuthuserID(userID);
+        setAuthUserID(userID);
 
         localStorage.setItem("@task_manager:userID", JSON.stringify(userID));
 
@@ -82,23 +82,23 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
   function signOut() {
     localStorage.removeItem("@task_manager:userID");
-    setAuthuserID("");
+    setAuthUserID("");
     // remove cookie
   }
 
   useEffect(() => {
-    const useriD = localStorage.getItem("@task_manager:userID");
+    const userID = localStorage.getItem("@task_manager:userID");
 
-    if (useriD) {
+    console.log(userID);
+
+    if (userID) {
       // get user in api
-      setAuthuserID(useriD);
+      setAuthUserID(userID);
     }
   }, []);
 
   return (
-    <AuthContext.Provider
-      value={{ signIn, isLoading, signUp, signOut, authuserID }}
-    >
+    <AuthContext.Provider value={{ signIn, isLoading, signUp, signOut, authUserID }}>
       {children}
     </AuthContext.Provider>
   );

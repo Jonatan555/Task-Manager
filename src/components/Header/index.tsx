@@ -1,31 +1,20 @@
 import { Link } from "react-router-dom";
 import { Container } from "./styles";
 import logo from "../../assets/logo-rj.png";
-import { Sidebar } from "../Sidebar";
+import { SideBar } from "../SideBar";
 import { useState } from "react";
-import { useAuth } from "../../hooks/useAuth";
 
 export function Header() {
-  const [showSidebar, setshowSidebar] = useState(false);
-  const {signout} = useAuth();
-  const navigate = useNavigate();
+  const [showSideBar, setShowSideBar] = useState(false);
 
-  function logoutApp() {
-    const resp = confirm("Deseja sair da aplicação?");
-
-    if (resp) {
-      signout();
-      navigate("/")
-    }
-  }
-
-  function toggleSidebar() {
-    setshowSidebar((prevstate) => (prevstate == true ? false : true));
+  function toggleSideBar() {
+    setShowSideBar((prevState) => (prevState == true ? false : true));
   }
   return (
     <Container>
-      <div className="asideMenu"></div>
-      <i className="closeIcon material-Icons"   onClick={toggleSidebar}>close</i>
+      <i className="menuIcon material-icons" onClick={toggleSideBar}>
+        menu
+      </i>
 
       <div className="appLogo">
         <h1>Task Manager</h1>
@@ -34,7 +23,7 @@ export function Header() {
         </Link>
       </div>
 
-      {showSidebar && <Sidebar toggleSidebar={toggleSidebar} />}
+      {showSideBar && <SideBar toggleSideBar={toggleSideBar} />}
     </Container>
   );
 }

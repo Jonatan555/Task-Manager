@@ -1,9 +1,9 @@
 import { Container } from "./styles";
 
-export function Createtasks() {
+export function CreateTasks() {
   return (
     <Container>
-      <h1>Cretatasks</h1>
+      <h1>Create Tasks</h1>
     </Container>
   );
 }
